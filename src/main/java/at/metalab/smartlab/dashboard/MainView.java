@@ -6,9 +6,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.text.html.HTML;
+
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
+import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
@@ -140,7 +143,8 @@ public class MainView extends VerticalLayout {
 				new StreamResource("metalab-logo.png", f), //
 				"Metalab Logo");
 		header.add(i);
-		header.add(new Text("Metalab Smartlab - Dashboard"));
+		Html h = new Html("<div style=\"font-weight: bold\">Metalab Smartlab - Dashboard</div>");
+		header.add(h);
 
 		add(header, actions, pages);
 	}
