@@ -6,7 +6,7 @@ After=network-online.target
 
 [Service]
 User=root
-ExecStart=/home/pi/smartlab-dashboard.jar --dashboard.haApiToken=XXXX --server.port=80
+ExecStart=/home/pi/smartlab-dashboard.jar --vaadin.productionMode=true --vaadin.original.frontend.resources=true --dashboard.haApiToken=XXXX --server.port=80
 SuccessExitStatus=143
 Restart=on-failure
 
