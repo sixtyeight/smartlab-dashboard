@@ -92,15 +92,14 @@ public class MainView extends VerticalLayout {
 		Tab tab5 = new Tab("Other");
 		Div page5 = new Div();
 		Button shutdownBtn = new Button("Shutdown");
-		shutdownBtn.addClickListener(l -> s.service("homeassistant", "turn_on",
-				"{ \"entity_id\" : \"automation.react_on_mqtt_shutdown_trigger\" }"));
+
+		shutdownBtn.addClickListener(l -> s.service("mqtt", "publish", "{ \"topic\": \"metalab/shutdown\" }"));
 		page5.add(shutdownBtn);
 
 		page5.add(" ");
 
 		Button antishutdownBtn = new Button("Startup");
-		antishutdownBtn.addClickListener(
-				l -> s.service("homeassistant", "turn_on", "{ \"entity_id\" : \"automation.antishutdown\" }"));
+		antishutdownBtn.addClickListener(l -> s.service("mqtt", "publish", "{ \"topic\": \"metalab/startup\" }"));
 		page5.add(antishutdownBtn);
 		page5.setVisible(false);
 
