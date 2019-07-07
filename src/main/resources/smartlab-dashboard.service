@@ -1,0 +1,14 @@
+[Unit]
+# this file should be in: /etc/systemd/system
+
+Description=Smartlab Dashboard
+After=network-online.target
+
+[Service]
+User=root
+ExecStart=/home/pi/smartlab-dashboard.jar --dashboard.haApiToken=XXXX --server.port=80
+SuccessExitStatus=143
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
