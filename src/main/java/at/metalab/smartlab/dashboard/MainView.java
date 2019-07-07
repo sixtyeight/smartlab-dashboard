@@ -1,5 +1,6 @@
 package at.metalab.smartlab.dashboard;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -8,13 +9,17 @@ import java.util.Set;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.InputStreamFactory;
+import com.vaadin.flow.server.StreamResource;
 
 @Route
 public class MainView extends VerticalLayout {
@@ -92,7 +97,7 @@ public class MainView extends VerticalLayout {
 		page5.add(shutdownBtn);
 
 		page5.add(" ");
-		
+
 		Button antishutdownBtn = new Button("Startup");
 		antishutdownBtn.addClickListener(
 				l -> s.service("homeassistant", "turn_on", "{ \"entity_id\" : \"automation.antishutdown\" }"));
@@ -121,6 +126,23 @@ public class MainView extends VerticalLayout {
 
 		HorizontalLayout actions = new HorizontalLayout(tabs);
 
-		add(actions, pages);
+		InputStreamFactory f = new InputStreamFactory() {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public InputStream createInputStream() {
+				return Thread.currentThread().getContextClassLoader().getResourceAsStream("metalab-logo.png");
+			}
+		};
+
+		Div header = new Div();
+		Image i = new Image(//
+				new StreamResource("metalab-logo.png", f), //
+				"Metalab Logo");
+		header.add(i);
+		header.add(new Text("Metalab Smartlab - Dashboard"));
+
+		add(header, actions, pages);
 	}
 }
