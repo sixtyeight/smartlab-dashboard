@@ -75,8 +75,8 @@ public class MainView extends VerticalLayout {
 				l -> s.haLightTurn("light.loungelights_zumtobel", true), //
 				l -> s.haLightTurn("light.loungelights_zumtobel", false)));
 		page3.add(buttonOnOff("Squarelamp", //
-				l -> s.haSwitchTurn("switch.squarelamp", true), //
-				l -> s.haSwitchTurn("switch.squarelamp", false)));
+				l -> s.haSwitchTurn("switch.loungesquarelamp", true), //
+				l -> s.haSwitchTurn("switch.loungesquarelamp", false)));
 		page3.setVisible(false);
 
 		Tab tab4 = new Tab("Entrance");
